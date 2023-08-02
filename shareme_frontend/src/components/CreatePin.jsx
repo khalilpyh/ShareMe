@@ -69,14 +69,33 @@ const CreatePin = ({ user }) => {
     setCategory(event.target.value);
   };
 
+  const validatedUrl = (inputUrl) => {
+    // Check if the inputUrl starts with "http://"
+    if (inputUrl.startsWith("http://")) {
+      // Replace "http://" with "https://"
+      return inputUrl.replace("http://", "https://");
+    } else if (!inputUrl.startsWith("https://")) {
+      // If the inputUrl doesn't start with either "http://" or "https://",
+      // we will prepend "https://" to the inputUrl.
+      return `https://${inputUrl}`;
+    } else {
+      //simply return the original url
+      return inputUrl;
+    }
+  };
+
   const savePin = () => {
-    //create pin and add to database
+    //check if all fields are entered
     if (title && about && destination && imageAsset?._id && category) {
+      //validate the url
+      const validatedDestination = validatedUrl(destination);
+
+      //create the pin and add to database
       const document = {
         _type: "pin",
         title,
         about,
-        destination,
+        destination: validatedDestination,
         image: {
           _type: "image",
           asset: {
@@ -145,7 +164,7 @@ const CreatePin = ({ user }) => {
               <div className="relative h-full">
                 <img
                   src={imageAsset?.url}
-                  alt="uploaded picture"
+                  alt="uploaded file"
                   className="h-full w-full"
                 />
                 <button

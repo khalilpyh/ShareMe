@@ -161,6 +161,7 @@ export const pinDetailQuery = (pinId) => {
       },
     }
   }`;
+
   return query;
 };
 
@@ -187,6 +188,7 @@ export const pinDetailMorePinQuery = (pin) => {
       },
     },
   }`;
+
   return query;
 };
 
@@ -212,6 +214,7 @@ export const userCreatedPinsQuery = (userId) => {
       },
     },
   }`;
+
   return query;
 };
 
@@ -237,5 +240,6 @@ export const userSavedPinsQuery = (userId) => {
       },
     },
   }`;
+
   return query;
 };
