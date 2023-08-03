@@ -49,21 +49,10 @@ const Login = () => {
 
         <div className="shadow-2xl">
           <GoogleLogin
-            // render={(renderProps) => (
-            //   <button
-            //     type="button"
-            //     className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
-            //     onClick={renderProps.onClick}
-            //     disabled={renderProps.disabled}
-            //   >
-            //     <FcGoogle className="mr-4" /> Sign in with google
-            //   </button>
-            // )}
             onSuccess={responseGoogle}
             onError={responseGoogle}
             cookiePolicy="single_host_origin"
           />
-          ;
         </div>
       </div>
     </div>

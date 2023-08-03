@@ -1,37 +1,16 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { categories } from "../utils/data";
 import { RiHomeFill } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import logo from "../assets/logo.png";
 // import { categories } from '../utils/data';
 
 //navlink styles (active/inactive)
-const isNotActiveStyle =
+const isInActiveStyle =
   "flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize";
 const isActiveStyle =
   "flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize";
-
-//dummy categories
-const categories = [
-  {
-    name: "Animals",
-  },
-  {
-    name: "Wallpapers",
-  },
-  {
-    name: "Photography",
-  },
-  {
-    name: "Gaming",
-  },
-  {
-    name: "Coding",
-  },
-  {
-    name: "Other",
-  },
-];
 
 const Sidebar = ({ closeToggle, user }) => {
   //toggle sidebar if toggle exists
@@ -50,10 +29,11 @@ const Sidebar = ({ closeToggle, user }) => {
           <img src={logo} alt="logo" className="w-full" />
         </Link>
         <div className="flex flex-col gap-5">
+          {/* home page nav link */}
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? isActiveStyle : isNotActiveStyle
+              isActive ? isActiveStyle : isInActiveStyle
             }
             onClick={handleCloseSidebar}
           >
@@ -63,15 +43,20 @@ const Sidebar = ({ closeToggle, user }) => {
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">
             Discover Categories
           </h3>
+          {/* nav link for each category */}
           {categories.slice(0, categories.length - 1).map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) =>
-                isActive ? isActiveStyle : isNotActiveStyle
+                isActive ? isActiveStyle : isInActiveStyle
               }
               onClick={handleCloseSidebar}
               key={category.name}
             >
+              <img
+                src={category.image}
+                className="w-8 h-8 rounded-full shadow-sm"
+              />
               {category.name}
             </NavLink>
           ))}

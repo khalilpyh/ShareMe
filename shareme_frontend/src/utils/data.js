@@ -166,6 +166,7 @@ export const pinDetailQuery = (pinId) => {
 };
 
 export const pinDetailMorePinQuery = (pin) => {
+  //get the pins with same category as the pin been passed in
   const query = `*[_type == "pin" && category == '${pin.category}' && _id != '${pin._id}' ]{
     image{
       asset->{
@@ -193,6 +194,7 @@ export const pinDetailMorePinQuery = (pin) => {
 };
 
 export const userCreatedPinsQuery = (userId) => {
+  //get also the pins user created
   const query = `*[ _type == 'pin' && userId == '${userId}'] | order(_createdAt desc){
     image{
       asset->{
@@ -219,6 +221,7 @@ export const userCreatedPinsQuery = (userId) => {
 };
 
 export const userSavedPinsQuery = (userId) => {
+  //get also the pins user saved
   const query = `*[_type == 'pin' && '${userId}' in save[].userId ] | order(_createdAt desc) {
     image{
       asset->{

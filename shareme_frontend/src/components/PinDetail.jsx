@@ -8,7 +8,6 @@ import Spinner from "./Spinner";
 import { MdDownloadForOffline } from "react-icons/md";
 
 const PinDetail = ({ user }) => {
-  // TODO: work on pin detail page
   //hooks
   const [pins, setPins] = useState(null);
   const [pinDetail, setPinDetail] = useState(null);

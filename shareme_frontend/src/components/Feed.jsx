@@ -36,6 +36,11 @@ const Feed = () => {
   if (loading)
     return <Spinner message="We are adding new ideas to your feed!" />;
 
+  //if no pins, display message
+  if (!pins?.length) {
+    return <div className="mt-10 text-center text-xl">No Pins Available.</div>;
+  }
+
   //display all content in masonry layout
   return <div>{pins && <MasonryLayout pins={pins} />}</div>;
 };

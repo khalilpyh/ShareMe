@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { HiMenu } from "react-icons/hi";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { Sidebar, UserProfile } from "../components";
 import { client } from "../client";
 import logo from "../assets/logo.png";
@@ -14,6 +14,7 @@ const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
+  const navigate = useNavigate();
 
   //get the user
   const userInfo = fetchUser();
@@ -28,12 +29,26 @@ const Home = () => {
     scrollRef.current.scrollTo(0, 0);
   });
 
+  const handleHiMenuOnClick = () => {
+    setToggleSidebar(true);
+  };
+
+  const handleCloseCircleOnClick = () => {
+    setToggleSidebar(false);
+  };
+
+  //redirect to login page if not signed in
+  if (!user) {
+    navigate("/login");
+  }
+
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
       {/* Desktop sidebar */}
       <div className="hidden md:flex h-screen flex-initial">
         <Sidebar user={user ?? user} />
       </div>
+      {console.log(user)}
 
       {/* Mobile sidebar */}
       <div className="flex md:hidden flex-row">
@@ -42,7 +57,7 @@ const Home = () => {
           <HiMenu
             fontSize={40}
             className="cursor-pointer"
-            onClick={() => setToggleSidebar(true)}
+            onClick={handleHiMenuOnClick}
           />
           {/* App logo */}
           <Link to="/">
@@ -50,7 +65,7 @@ const Home = () => {
           </Link>
           {/* User profile icon*/}
           <Link to={`user-profile/${user?._id}`}>
-            <img src={user?.image} alt="user profile" className="w-28" />
+            <img src={user?.image} alt="user profile" className="w-14" />
           </Link>
         </div>
         {/* Show and hide sidebar on mobile devices */}
@@ -60,7 +75,7 @@ const Home = () => {
               <AiFillCloseCircle
                 fontSize={30}
                 className="cursor-pointer "
-                onClick={() => setToggleSidebar(false)}
+                onClick={handleCloseCircleOnClick}
               />
             </div>
             <Sidebar user={user ?? user} closeToggle={setToggleSidebar} />

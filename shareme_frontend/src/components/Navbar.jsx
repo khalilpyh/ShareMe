@@ -8,8 +8,13 @@ const Navbar = ({ searchString, setSearchString, user }) => {
   // Only show navbar if user exists
   if (!user) return null;
 
-  const handleOnChange = (event) => {
+  const handleSearchOnChange = (event) => {
     return setSearchString(event.target.value);
+  };
+
+  const handleSearchOnFocus = () => {
+    //direct to search page
+    navigate("/search");
   };
 
   return (
@@ -18,10 +23,10 @@ const Navbar = ({ searchString, setSearchString, user }) => {
         <IoMdSearch fontSize={21} className="ml-1" />
         <input
           type="text"
-          onChange={handleOnChange}
+          onChange={handleSearchOnChange}
           placeholder="Search"
           value={searchString}
-          onFocus={() => navigate("/search")}
+          onFocus={handleSearchOnFocus}
           className="p-2 w-full bg-white outline-none"
         />
       </div>
