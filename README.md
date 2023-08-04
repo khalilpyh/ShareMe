@@ -1,5 +1,6 @@
-# shareme
-A social photo sharing web app that allows people to share photos.
+# ShareMe
+A photo sharing social media web app that allows people to share photos.
+Live version: [ShareMe](https://shareme-yuhao.netlify.app)
 
 # Tools
 Language: JavaScript, HTML, CSS
