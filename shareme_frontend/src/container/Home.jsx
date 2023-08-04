@@ -48,7 +48,6 @@ const Home = () => {
       <div className="hidden md:flex h-screen flex-initial">
         <Sidebar user={user ?? user} />
       </div>
-      {console.log(user)}
 
       {/* Mobile sidebar */}
       <div className="flex md:hidden flex-row">
