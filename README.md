@@ -8,4 +8,4 @@ Language: JavaScript, HTML, CSS
 
 Libraries and Frameworks: React.js, Tailwind CSS
 
-Database: Sanity.io
+CMS: Sanity.io
